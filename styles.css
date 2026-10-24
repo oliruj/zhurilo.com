@@ -1,0 +1,430 @@
+/* Bindary Design System tokens.
+   Marist and Diatype are licensed to Bindary only and have no Cyrillic, so Source Serif 4
+   and Geist stand in for them here; Geist Mono is the system's own mono face. */
+:root {
+  --black: #1A1A1A;
+  --ink-700: #333333;
+  --grey-500: #6B6B6B;
+  --grey-300: #B8B8B8;
+  --grey-200: #DDDBD5;
+  --beige: #F2F0EA;
+  --white: #FFFFFF;
+  --blue-500: #4B2FF5;
+  --blue-400: #7A64FF;
+
+  --font-display: "Source Serif 4", Georgia, serif;
+  --font-body: "Geist", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, Menlo, monospace;
+
+  --tracking-wordmark: -0.04em;
+  --tracking-display: -0.02em;
+  --tracking-label: 0.14em;
+
+  --radius-m: 10px;
+  --radius-l: 16px;
+  --radius-pill: 999px;
+
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --dur-fast: 120ms;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--beige);
+  color: var(--black);
+  font: 400 17px/1.5 var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-inline: 40px;
+}
+
+.label {
+  margin: 0;
+  font: 500 11px/1 var(--font-mono);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--grey-500);
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.wordmark {
+  font: 700 19px/1 var(--font-body);
+  letter-spacing: var(--tracking-wordmark);
+}
+
+/* Language switch, after the Tabs component: a pill track with the current language filled */
+.lang {
+  display: inline-flex;
+  gap: 2px;
+  padding: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--white);
+}
+
+.lang a {
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  font: 500 13px/1 var(--font-body);
+  color: var(--ink-700);
+  text-decoration: none;
+  transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast);
+}
+
+.lang a:hover { color: var(--black); }
+
+.lang a[aria-current="page"] {
+  background: var(--black);
+  color: var(--white);
+}
+
+/* Hero */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  column-gap: 64px;
+  align-items: end;
+  padding-block: 56px 32px;
+}
+
+.hero-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.kicker img {
+  display: block;
+  width: 28px;
+  height: 28px;
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 14em;
+  font: 600 clamp(38px, 1.5rem + 2.7vw, 62px)/1.06 var(--font-display);
+  letter-spacing: var(--tracking-display);
+  text-wrap: pretty;
+}
+
+/* Russian runs about a fifth longer, so its statement steps down a size */
+.hero h1:lang(ru) { font-size: clamp(34px, 1.4rem + 2.2vw, 52px); }
+
+.nowrap { white-space: nowrap; }
+
+.hero-lede {
+  margin: 0;
+  max-width: 600px;
+  font-size: 19px;
+  color: var(--ink-700);
+  text-wrap: pretty;
+}
+
+/* Contact bar: a black pill track, email first as the filled action, networks beside it */
+.social {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 6px;
+  border-radius: var(--radius-pill);
+  background: var(--black);
+}
+
+.social-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 18px;
+  border-radius: var(--radius-pill);
+  font: 500 15px/1 var(--font-body);
+  color: var(--white);
+  text-decoration: none;
+  transition: transform var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease), color var(--dur-fast);
+}
+
+.social-link:hover { background: rgba(255, 255, 255, .12); }
+
+.social-link.is-primary {
+  background: var(--white);
+  color: var(--black);
+}
+
+.social-link.is-primary:hover { background: var(--beige); }
+
+.social-link:focus-visible { outline-color: var(--blue-400); }
+
+.social-icon {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius-l);
+  background: var(--white);
+}
+
+/* Press feedback, from the Button component */
+.social-link:active { transform: scale(.98); }
+
+/* Sections */
+.section { padding-block: 88px; }
+
+.section-head {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.section-head h2 {
+  margin: 0;
+  max-width: 19em;
+  font: 600 40px/1.12 var(--font-display);
+  letter-spacing: var(--tracking-display);
+  text-wrap: pretty;
+}
+
+/* White list card with ruled rows */
+.list {
+  margin: 0;
+  padding: 8px 32px;
+  background: var(--white);
+  border-radius: var(--radius-l);
+}
+
+.list-row {
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+  column-gap: 32px;
+  align-items: center;
+  padding-block: 18px;
+}
+
+.list-row + .list-row { border-top: 1px solid var(--grey-200); }
+
+.list dt {
+  margin: 0;
+  font-weight: 600;
+}
+
+.list dd {
+  margin: 0;
+  color: var(--ink-700);
+  text-wrap: pretty;
+}
+
+.company {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.company img {
+  flex: none;
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-m);
+}
+
+/* The Bindary mark sits on a black tile in the approved White + Blue 400 pairing */
+.company .logo-tile {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-m);
+  background: var(--black);
+}
+
+.company .logo-tile img {
+  width: 24px;
+  height: 24px;
+  border-radius: 0;
+}
+
+/* Chip, size s, neutral status */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--beige);
+  color: var(--grey-500);
+  font: 500 10px/1 var(--font-mono);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.list a,
+.hero-lede a {
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: var(--grey-300);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color var(--dur-fast), text-decoration-color var(--dur-fast);
+}
+
+.list a:hover,
+.hero-lede a:hover {
+  color: var(--blue-500);
+  text-decoration-color: var(--blue-500);
+}
+
+/* Endurance: black band, statement on the left, detail on the right */
+.band {
+  background: var(--black);
+  color: var(--white);
+}
+
+.band .label { color: rgba(255, 255, 255, .6); }
+
+.band-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  column-gap: 64px;
+  align-items: end;
+  margin-top: 28px;
+}
+
+.band h2 {
+  margin: 0;
+  font: 600 44px/1.1 var(--font-display);
+  letter-spacing: var(--tracking-display);
+  text-wrap: pretty;
+}
+
+.band-text {
+  margin: 0;
+  font-size: 19px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, .75);
+  text-wrap: pretty;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 24px;
+  padding-block: 40px 48px;
+  font-size: 14px;
+  color: var(--grey-500);
+}
+
+.footer .wordmark {
+  font-size: 16px;
+  color: var(--black);
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-links a {
+  color: var(--grey-500);
+  text-decoration: none;
+}
+
+.footer-links a:hover { color: var(--black); }
+
+a:focus-visible {
+  outline: 2px solid var(--blue-500);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .social-link, .lang a, .list a, .hero-lede a { transition: none; }
+  .social-link:active { transform: none; }
+}
+
+@media (max-width: 860px) {
+  .wrap { padding-inline: 20px; }
+
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 32px;
+    padding-block: 24px 8px;
+  }
+
+  .portrait {
+    grid-row: 1;
+    max-width: 168px;
+  }
+
+  .hero-lede { font-size: 17px; }
+
+  /* On a phone the networks collapse to icons; their names stay for screen readers */
+  .social-link { padding: 12px 14px; }
+
+  .social-link:not(.is-primary) .social-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .section { padding-block: 56px; }
+
+  .section-head h2 { font-size: 30px; }
+
+  .list { padding: 4px 20px; }
+
+  .list-row {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 8px;
+    align-items: start;
+    padding-block: 16px;
+  }
+
+  .band-grid {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: 20px;
+  }
+
+  .band h2 { font-size: 32px; }
+
+  .band-text { font-size: 17px; }
+}
