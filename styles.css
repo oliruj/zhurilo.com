@@ -107,6 +107,7 @@ body {
   flex-direction: column;
   align-items: flex-start;
   gap: 28px;
+  container-type: inline-size;
 }
 
 .kicker {
@@ -154,7 +155,7 @@ body {
 /* Contact bar: a black pill track, email first as the filled action, networks beside it */
 .social {
   display: inline-flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 4px;
   padding: 6px;
   border-radius: var(--radius-pill);
@@ -208,6 +209,22 @@ body {
 
 /* Press feedback, from the Button component */
 .social-link:active { transform: scale(.98); }
+
+/* When the text column is too narrow for four labelled pills (about 600px, which happens
+   between tablet and desktop widths), the networks keep only their icons; the names stay
+   for screen readers. The phone rule below repeats this for browsers without container queries. */
+@container (max-width: 600px) {
+  .social-link:not(.is-primary) { padding: 12px 14px; }
+
+  .social-link:not(.is-primary) .social-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
 
 /* Sections */
 .section { padding-block: 88px; }
