@@ -357,6 +357,29 @@ body {
 
 .band .split-text a { text-decoration-color: rgba(255, 255, 255, .4); }
 
+/* Talks: a photo wall under the statement. One 12-column grid at every width;
+   wide 3:2 tiles span 6, upright 3:4 tiles span 3 and square tiles span 4,
+   so every row of a wide-plus-upright mix keeps the same height. */
+.photo-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.photo-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: var(--radius-l);
+  background: var(--white);
+}
+
+.tile-wide { grid-column: span 6; aspect-ratio: 3 / 2; }
+.tile-tall { grid-column: span 3; aspect-ratio: 3 / 4; }
+.tile-square { grid-column: span 4; aspect-ratio: 1; }
+
 /* Footer */
 .footer {
   display: flex;
@@ -447,4 +470,11 @@ a:focus-visible {
   .band .split h2 { font-size: 32px; }
 
   .split-text { font-size: 17px; }
+
+  .photo-grid {
+    gap: 8px;
+    margin-top: 32px;
+  }
+
+  .photo-grid img { border-radius: var(--radius-m); }
 }
